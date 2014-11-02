@@ -1,0 +1,10 @@
+<resources>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_sign_in">Se connecter ou s\'inscrire</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="action_logout">Se déconnecter</string>
+    <string name="error_field_required">Champ Requis</string>
+    <string name="error_incorrect_password">Le Mot de passe est erroné</string>
+    <string name="error_invalid_email">E-mail incorrect</string>
+    <string name="error_invalid_password">Le mot de passe est trop court</string>
+</resources>

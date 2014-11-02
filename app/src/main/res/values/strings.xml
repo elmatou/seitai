@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Webapp</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_sync">Sync</string>
+    <string name="action_clear">Clear (%1$s)</string>
+    <string name="action_logout">Logout</string>
 
 </resources>
