@@ -7,4 +7,10 @@
     <string name="error_incorrect_password">Le Mot de passe est erroné</string>
     <string name="error_invalid_email">E-mail incorrect</string>
     <string name="error_invalid_password">Le mot de passe est trop court</string>
+    <string name="action_clear">Effacer (%1$s)</string>
+    <string name="action_refresh">Rafraichir</string>
+    <string name="action_sync">Synchroniser</string>
+    <string name="no_app">Application non disponible. Connectez-vous au moins une fois à Internet. Que voulez-ous faire ?</string>
+    <string name="pref_description_offline">Rendre l\'application et les données disponible Hors-ligne</string>
+    <string name="pref_title_offline">Autoriser l\'utilisation hors-ligne</string>
 </resources>
