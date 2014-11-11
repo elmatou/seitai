@@ -2,27 +2,26 @@ package fr.asapp.webapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
+import android.os.Bundle;
+import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.Window;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class WebActivity extends ActionBarActivity {
     final Activity activity = this;
@@ -52,14 +51,15 @@ public class WebActivity extends ActionBarActivity {
 //            super.onPageStarted(view, url, favicon);
 //        }
 
-//        @Override
-//        public void onPageFinished(WebView view, String url) {
-//            super.onPageFinished(view, url);
-//        }
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            injectScriptFile(view, "js/test.js");
+        }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().equals(Uri.parse(myPrefs.getString("html_url", "")).getHost()) || !myPrefs.getBoolean("html_external", true)) {
+            if (Uri.parse(url).getHost().equals(Uri.parse(myPrefs.getString("html_url", "")).getHost()) || myPrefs.getBoolean("html_external", true)) {
                 // This is my website, so do not override; let my WebView load the page
                 return false;
             }
@@ -148,6 +148,8 @@ public class WebActivity extends ActionBarActivity {
         webview.setWebViewClient(new MyWebViewClient());
         webview.setWebChromeClient(new MyWebChromeClient());
 
+        webview.getSettings().setLightTouchEnabled(true);
+
         webview.getSettings().setJavaScriptEnabled(sharedPref.getBoolean("html_javascript", false));
 
         webview.getSettings().setDomStorageEnabled(sharedPref.getBoolean("html_domstorage", false));
@@ -171,10 +173,9 @@ public class WebActivity extends ActionBarActivity {
         return webview;
     }
 
-    public void WebViewClear(WebView webview){
-        webview.clearCache(true);
-        //WebStorage.deleteAllData();
-        //WebStorage.deleteOrigin(String origin);
+    public void WebViewClear(){
+        myWebView.clearCache(true);
+        WebStorage.getInstance().deleteAllData();
     }
 
     public void WebViewRefresh(WebView webview) {
@@ -182,4 +183,29 @@ public class WebActivity extends ActionBarActivity {
         webview.reload();
     }
 
+    private boolean injectScriptFile(WebView view, String scriptFile) {
+        InputStream input;
+        try {
+            input = getAssets().open(scriptFile);
+            byte[] buffer = new byte[input.available()];
+            input.read(buffer);
+            input.close();
+
+            // String-ify the script byte-array using BASE64 encoding !!!
+            String encoded = Base64.encodeToString(buffer, Base64.NO_WRAP);
+            view.loadUrl("javascript:(function() {" +
+                    "var parent = document.getElementsByTagName('head').item(0);" +
+                    "var script = document.createElement('script');" +
+                    "script.type = 'text/javascript';" +
+                    // Tell the browser to BASE64-decode the string into your script !!!
+                    "script.innerHTML = window.atob('" + encoded + "');" +
+                    "parent.appendChild(script)" +
+                    "})()");
+            return true;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

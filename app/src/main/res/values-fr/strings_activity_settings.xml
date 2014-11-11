@@ -13,8 +13,8 @@
     <string name="pref_title_javascript">Autoriser Javascript</string>
     <string name="pref_description_javascript">Cocher si Javascript est nécéssaire</string>
 
-    <string name="pref_title_external">URL externes vers le navigateur</string>
-    <string name="pref_description_external">N\'autorise que les url internes dans l\'application</string>
+    <string name="pref_title_external">Autoriser URL externes</string>
+    <string name="pref_description_external">Charger les url externes dans l\'application</string>
 
     <string name="pref_title_geolocation">Autoriser la géolocation</string>
     <string name="pref_description_geolocation">Cocher pour toujours transmettre sa localisation</string>

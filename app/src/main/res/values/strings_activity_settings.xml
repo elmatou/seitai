@@ -13,8 +13,8 @@
     <string name="pref_title_javascript">Allow Javascript</string>
     <string name="pref_description_javascript">Check if javascript is needed</string>
 
-    <string name="pref_title_external">External url in browser</string>
-    <string name="pref_description_external">Allow only internal URL in the application</string>
+    <string name="pref_title_external">Allow external URL</string>
+    <string name="pref_description_external">Allow external URL to be loaded in the application</string>
 
     <string name="pref_title_geolocation">Allow Geolocation</string>
     <string name="pref_description_geolocation">Check this to always provide location</string>

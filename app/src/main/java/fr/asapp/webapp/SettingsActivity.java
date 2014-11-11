@@ -46,6 +46,7 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setupSimplePreferencesScreen();
     }
 
