@@ -1,0 +1,56 @@
+<resources>
+    <string name="title_activity_settings">Paramètres</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_url">App URL</string>
+    <string name="pref_description_url">Addresse de la WebApp</string>
+
+
+    <string name="pref_title_system_network_settings">Paramètres réseau du système</string>
+    <string name="pref_description_system_network_settings">Aller vers les paramètres réseau du système</string>
+
+    <string name="pref_title_javascript">Autoriser Javascript</string>
+    <string name="pref_description_javascript">Cocher si Javascript est nécéssaire</string>
+
+    <string name="pref_title_external">URL externes vers le navigateur</string>
+    <string name="pref_description_external">N\'autorise que les url internes dans l\'application</string>
+
+    <string name="pref_title_geolocation">Autoriser la géolocation</string>
+    <string name="pref_description_geolocation">Cocher pour toujours transmettre sa localisation</string>
+
+    <string name="pref_header_data_sync">Données &amp; Synchro</string>
+
+    <string name="pref_title_offline">Activer l\'utilisation hors-ligne</string>
+    <string name="pref_description_offline">Autorise l\'application à stocker données et application sur l\'appareil.</string>
+
+    <string name="pref_title_offline_app">Utiliser Application Cache</string>
+    <string name="pref_description_offline_app">Garder l\'application Web sur l\'appareil</string>
+    <string name="pref_title_offline_data">Utiliser LocalStorage</string>
+    <string name="pref_description_offline_data">Garder les données sur l\'appareil</string>
+
+    <string name="pref_title_sync_frequency">Fréquence de Synchro</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 heure</item>
+        <item>3 heures</item>
+        <item>6 heures</item>
+        <item>Jamais</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">Synchronisation du système</string>
+    <string name="pref_description_system_sync_settings">Aller aux paramètres de synchronisation du système</string>
+
+    <string name="pref_title_clear">Nettoyer données locales</string>
+    <string name="pref_description_clear">Nettoyer Application, Cache &amp; Storage</string>
+    <string name="pref_ask_clear">Êtes-vous sûre ?</string>
+</resources>

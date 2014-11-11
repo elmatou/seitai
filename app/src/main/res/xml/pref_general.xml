@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:key="html_url"
+        android:title="@string/pref_title_url"
+        android:summary="@string/pref_description_url"
+        android:defaultValue="@string/pref_default_url"
+        android:selectAllOnFocus="true"
+        android:inputType="textUri"
+        android:capitalize="none"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+
+    <CheckBoxPreference
+    android:key="html_geolocation"
+    android:enabled="false"
+    android:title="@string/pref_title_geolocation"
+    android:summary="@string/pref_description_geolocation"
+    android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="html_javascript"
+        android:title="@string/pref_title_javascript"
+        android:summary="@string/pref_description_javascript"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:key="html_external"
+        android:title="@string/pref_title_external"
+        android:summary="@string/pref_description_external"
+        android:defaultValue="true" />
+
+    <Preference
+        android:title="@string/pref_title_system_network_settings"
+        android:summary="@string/pref_description_system_network_settings">
+        <intent android:action="android.settings.AIRPLANE_MODE_SETTINGS" />
+    </Preference>
+
+</PreferenceScreen>

@@ -1,0 +1,56 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_url">App URL</string>
+    <string name="pref_description_url">Base address for the WebApp</string>
+    <string name="pref_default_url">http://asapp.github.io/appcache-basic</string>
+
+    <string name="pref_title_system_network_settings">System Network settings</string>
+    <string name="pref_description_system_network_settings">Go to System Network settings</string>
+
+    <string name="pref_title_javascript">Allow Javascript</string>
+    <string name="pref_description_javascript">Check if javascript is needed</string>
+
+    <string name="pref_title_external">External url in browser</string>
+    <string name="pref_description_external">Allow only internal URL in the application</string>
+
+    <string name="pref_title_geolocation">Allow Geolocation</string>
+    <string name="pref_description_geolocation">Check this to always provide location</string>
+
+    <string name="pref_header_data_sync">Data &amp; Sync</string>
+
+    <string name="pref_title_offline">Enable Offline usage</string>
+    <string name="pref_description_offline">Allow application to keep copy off App &amp; Data on the device</string>
+
+    <string name="pref_title_offline_app">Use Application Cache</string>
+    <string name="pref_description_offline_app">Keep App on device</string>
+    <string name="pref_title_offline_data">Use LocalStorage</string>
+    <string name="pref_description_offline_data">Keep Data on device</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System Sync settings</string>
+    <string name="pref_description_system_sync_settings">Go to system sync settings</string>
+
+    <string name="pref_title_clear">Clear local data</string>
+    <string name="pref_description_clear">clear Application, Cache &amp; Storage</string>
+    <string name="pref_ask_clear">Are you sure ?</string>
+</resources>

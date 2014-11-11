@@ -1,0 +1,50 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="html_domstorage"
+        android:title="@string/pref_title_offline"
+        android:summary="@string/pref_description_offline"
+        android:defaultValue="true" />
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <CheckBoxPreference
+        android:key="html_appcache"
+        android:dependency="html_domstorage"
+        android:title="@string/pref_title_offline_app"
+        android:summary="@string/pref_description_offline_app"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:key="html_localstorage"
+        android:dependency="html_domstorage"
+        android:title="@string/pref_title_offline_data"
+        android:summary="@string/pref_description_offline_data"
+        android:defaultValue="true" />
+
+    <ListPreference
+        android:key="sync_frequency"
+        android:dependency="html_appcache"
+        android:enabled="false"
+        android:title="@string/pref_title_sync_frequency"
+        android:entries="@array/pref_sync_frequency_titles"
+        android:entryValues="@array/pref_sync_frequency_values"
+        android:defaultValue="-1"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines. -->
+    <Preference
+        android:dependency="sync_frequency"
+        android:title="@string/pref_title_system_sync_settings"
+        android:summary="@string/pref_description_system_sync_settings">
+        <intent android:action="android.settings.SYNC_SETTINGS" />
+    </Preference>
+
+    <Preference
+        android:key="html_clear"
+        android:title="@string/pref_title_clear"
+        android:summary="@string/pref_description_clear"/>
+</PreferenceScreen>
