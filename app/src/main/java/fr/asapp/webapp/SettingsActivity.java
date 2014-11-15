@@ -1,13 +1,12 @@
 package fr.asapp.webapp;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -16,9 +15,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.text.TextUtils;
-
 
 import java.util.List;
 
@@ -89,7 +85,8 @@ public class SettingsActivity extends PreferenceActivity {
                                 .setMessage(R.string.pref_description_clear)
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-        //                                code positive
+                                        setResult(RESULT_OK,new Intent());
+                                        finish();
                                     }
                                 })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -150,6 +147,8 @@ public class SettingsActivity extends PreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+            Activity activity = (Activity) preference.getContext();
+            activity.setResult(RESULT_OK, new Intent());
 
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in

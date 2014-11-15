@@ -2,6 +2,7 @@ package fr.asapp.webapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +29,7 @@ public class WebActivity extends ActionBarActivity {
     final Activity activity = this;
     private WebView myWebView;
     private SharedPreferences myPrefs;
+    static final int SETTINGS_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,10 +128,18 @@ public class WebActivity extends ActionBarActivity {
                 WebViewRefresh(myWebView);
                 return true;
             case R.id.action_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+                startActivityForResult((new Intent(this, SettingsActivity.class)), SETTINGS_REQUEST);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SETTINGS_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                WebViewClear(getApplicationContext(), myWebView);
+            }
         }
     }
 
@@ -173,16 +184,18 @@ public class WebActivity extends ActionBarActivity {
         return webview;
     }
 
-    public void WebViewClear(){
-        myWebView.clearCache(true);
+    static void WebViewClear(Context context, WebView webview) {
+        webview.clearCache(true);
         WebStorage.getInstance().deleteAllData();
+        Toast.makeText(context,R.string.toast_refresh,Toast.LENGTH_SHORT).show();
     }
 
-    public void WebViewRefresh(WebView webview) {
+    static void WebViewRefresh(WebView webview) {
         webview.clearCache(false);
         webview.reload();
     }
 
+    // http://stackoverflow.com/questions/21552912/android-web-view-inject-local-javascript-file-to-remote-webpage
     private boolean injectScriptFile(WebView view, String scriptFile) {
         InputStream input;
         try {
