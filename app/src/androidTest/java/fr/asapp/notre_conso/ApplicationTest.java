@@ -1,4 +1,4 @@
-package fr.asapp.webapp;
+package fr.asapp.notre_conso;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

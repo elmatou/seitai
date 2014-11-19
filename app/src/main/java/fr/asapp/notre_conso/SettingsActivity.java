@@ -1,4 +1,4 @@
-package fr.asapp.webapp;
+package fr.asapp.notre_conso;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package fr.asapp.webapp;
+package fr.asapp.notre_conso;
 
 import android.app.Activity;
 import android.app.AlertDialog;

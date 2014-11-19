@@ -31,7 +31,7 @@
         android:key="html_external"
         android:title="@string/pref_title_external"
         android:summary="@string/pref_description_external"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <Preference
         android:title="@string/pref_title_system_network_settings"

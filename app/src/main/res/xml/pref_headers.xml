@@ -3,11 +3,11 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="fr.asapp.webapp.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="fr.asapp.notre_conso.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="fr.asapp.webapp.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="fr.asapp.notre_conso.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>
