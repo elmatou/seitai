@@ -6,5 +6,5 @@
     <string name="action_sync">Sync</string>
     <string name="action_clear">Clear (%1$s)</string>
     <string name="no_app_ask">What would you like to do ?</string>
-    <string name="no_app">Application not available. Please connect to internet at least one time. (%1$s)</string>
+    <string name="no_app_description">Application not available. Please connect to internet at least one time. (%1$s)</string>
 </resources>

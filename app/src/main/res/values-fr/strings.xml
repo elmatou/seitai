@@ -2,10 +2,10 @@
 <resources>
 
     <string name="action_refresh">Rafraichir</string>
+    <string name="toast_refresh">Cache vidé.</string>
     <string name="action_sync">Synchroniser</string>
     <string name="action_clear">Effacer (%1$s)</string>
     <string name="no_app_ask">Que voulez-vous faire ?</string>
     <string name="no_app_description">Application indisponible. Connectez-vous, au moins une fois, à Internet.(%1$s)</string>
-    <string name="toast_refresh">Cache vidé.</string>
 </resources>
 
