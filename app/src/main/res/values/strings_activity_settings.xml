@@ -10,6 +10,13 @@
     <string name="pref_title_system_network_settings">System Network settings</string>
     <string name="pref_description_system_network_settings">Go to System Network settings</string>
 
+    <string name="pref_title_source_app">Get Source Code</string>
+    <string name="pref_description_source_app">Go to android-webapp source code on Github</string>
+    <string name="pref_url_source_app">https://github.com/asapp/android-webapp</string>
+
+    <string name="pref_title_cookie">Allow Cookies</string>
+    <string name="pref_description_cookie">Check if cookies are needed</string>
+
     <string name="pref_title_javascript">Allow Javascript</string>
     <string name="pref_description_javascript">Check if javascript is needed</string>
 

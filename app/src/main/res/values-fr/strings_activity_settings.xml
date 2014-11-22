@@ -10,6 +10,13 @@
     <string name="pref_title_system_network_settings">Paramètres réseau du système</string>
     <string name="pref_description_system_network_settings">Aller vers les paramètres réseau du système</string>
 
+    <string name="pref_title_source_app">Get Source Code</string>
+    <string name="pref_description_source_app">Go to android-webapp source code on Github</string>
+    <string name="pref_url_source_app">https://github.com/asapp/android-webapp</string>
+
+    <string name="pref_title_cookie">Autoriser les Cookies</string>
+    <string name="pref_description_cookie">Cocher si les Cookies sont nécéssaires</string>
+
     <string name="pref_title_javascript">Autoriser Javascript</string>
     <string name="pref_description_javascript">Cocher si Javascript est nécéssaire</string>
 

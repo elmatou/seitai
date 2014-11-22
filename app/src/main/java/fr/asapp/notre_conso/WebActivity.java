@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
@@ -29,6 +30,7 @@ public class WebActivity extends ActionBarActivity {
     final Activity activity = this;
     private WebView myWebView;
     private SharedPreferences myPrefs;
+    private CookieManager mycookies;
     static final int SETTINGS_REQUEST = 1;
 
     @Override
@@ -40,11 +42,11 @@ public class WebActivity extends ActionBarActivity {
 
     @Override
     protected void onStart () {
-        myPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (!myPrefs.contains("html_url")) {
+        myPrefs = PreferenceSetup(getApplicationContext());
+        if (!myPrefs.contains("html_url"))
             startActivity(new Intent(WebActivity.this, SettingsActivity.class));
-        }
         myWebView = WebViewSetup(R.id.webview, myPrefs);
+        mycookies = CookieSetup(myPrefs.getBoolean("html_cookie", false));
         super.onStart();
     }
 
@@ -56,19 +58,17 @@ public class WebActivity extends ActionBarActivity {
 
         @Override
         public void onPageFinished(WebView view, String url) {
+            injectScriptFile(view, "js/postload.js");
             super.onPageFinished(view, url);
-            injectScriptFile(view, "js/test.js");
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().equals(Uri.parse(myPrefs.getString("html_url", "")).getHost()) || myPrefs.getBoolean("html_external", true)) {
-                // This is my website, so do not override; let my WebView load the page
+            // This is my website, so do not override; let my WebView load the page
+            if (Uri.parse(url).getHost().equals(Uri.parse(myPrefs.getString("html_url", "")).getHost()) || myPrefs.getBoolean("html_external", true))
                 return false;
-            }
             // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             return true;
         }
 
@@ -113,16 +113,12 @@ public class WebActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.web, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_sync:
                 WebViewRefresh(myWebView);
@@ -136,11 +132,9 @@ public class WebActivity extends ActionBarActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SETTINGS_REQUEST) {
-            if (resultCode == RESULT_OK) {
+        if (requestCode == SETTINGS_REQUEST)
+            if (resultCode == RESULT_OK)
                 WebViewClear(getApplicationContext(), myWebView);
-            }
-        }
     }
 
     @Override
@@ -152,7 +146,7 @@ public class WebActivity extends ActionBarActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public WebView WebViewSetup (Integer webview_id, SharedPreferences sharedPref) {
+    private WebView WebViewSetup(Integer webview_id, SharedPreferences sharedPref) {
 
         WebView webview = (WebView) findViewById(webview_id);
 
@@ -184,10 +178,30 @@ public class WebActivity extends ActionBarActivity {
         return webview;
     }
 
+    static SharedPreferences PreferenceSetup(final Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        PreferenceManager.setDefaultValues(context, R.xml.pref_general, false);
+        PreferenceManager.setDefaultValues(context, R.xml.pref_data_sync, false);
+/*
+        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                // Implementation
+            }
+        };
+        prefs.registerOnSharedPreferenceChangeListener(listener);*/
+
+        return prefs;
+    }
+    static CookieManager CookieSetup(Boolean value) {
+        CookieManager cook = CookieManager.getInstance();
+        cook.setAcceptCookie(value);
+        return cook;
+    }
+
     static void WebViewClear(Context context, WebView webview) {
         webview.clearCache(true);
         WebStorage.getInstance().deleteAllData();
-        Toast.makeText(context,R.string.toast_refresh,Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.toast_refresh, Toast.LENGTH_SHORT).show();
     }
 
     static void WebViewRefresh(WebView webview) {
@@ -217,7 +231,7 @@ public class WebActivity extends ActionBarActivity {
             return true;
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            // e.printStackTrace();
             return false;
         }
     }
