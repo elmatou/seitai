@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.webkit.CookieManager;
+import android.webkit.HttpAuthHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -97,6 +99,11 @@ public class WebActivity extends ActionBarActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+// TODO Add http basic Auth to settings.
+//        @Override public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+//            handler.proceed("USERNAME", "PASSWORD");
+//        }*/
+
     }
 
     private class MyWebChromeClient extends WebChromeClient {
@@ -154,6 +161,7 @@ public class WebActivity extends ActionBarActivity {
         webview.setWebChromeClient(new MyWebChromeClient());
 
         webview.getSettings().setLightTouchEnabled(true);
+        webview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
         webview.getSettings().setJavaScriptEnabled(sharedPref.getBoolean("html_javascript", false));
 
@@ -169,7 +177,7 @@ public class WebActivity extends ActionBarActivity {
 //        TODO implement Geolocation,
 //        webview.getSettings().setGeolocationEnabled(sharedPref.getBoolean("html_geolocation", false));
 //        webview.getSettings().setGeolocationDatabasePath(getApplicationContext().getCacheDir().getAbsolutePath());
-//        TODO add to manifest ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION;
+//        ALSO add to manifest ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION;
 
 //        TODO Check if setAllowFileAccess(true) needed ?!
         webview.getSettings().setAllowFileAccess(true);

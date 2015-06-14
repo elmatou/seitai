@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.asapp.notre_conso"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="0.1">
 
     <application
@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".WebActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
